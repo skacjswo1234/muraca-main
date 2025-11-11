@@ -1,0 +1,10 @@
+name = "muraca-main"
+main = "worker/index.js"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "muraca-main-db"
+database_id = "3d305ba6-3885-42c8-863a-5a583eee0988"
+
+migrations_dir = "migrations"

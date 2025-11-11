@@ -1425,3 +1425,203 @@ body {
         font-size: 0.98rem;
     }
 }
+
+/* 관리자 페이지 */
+.admin-body {
+    background: linear-gradient(135deg, #f8ede3 0%, #f5d3aa 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Noto Sans KR', 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.admin-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.admin-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 24px 60px rgba(107, 62, 38, 0.18);
+    backdrop-filter: blur(6px);
+}
+
+.admin-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #6B3E26;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.admin-description {
+    font-size: 1rem;
+    color: #5a4a42;
+    margin-bottom: 24px;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.admin-label {
+    font-weight: 600;
+    color: #6B3E26;
+    font-size: 0.95rem;
+}
+
+.admin-input {
+    width: 100%;
+    border: 1px solid rgba(107, 62, 38, 0.2);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.admin-input:focus {
+    outline: none;
+    border-color: #F5B700;
+    box-shadow: 0 0 0 4px rgba(245, 183, 0, 0.2);
+}
+
+.admin-button {
+    background: linear-gradient(135deg, #F5B700 0%, #ff9f43 100%);
+    color: #2F1A06;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(245, 183, 0, 0.35);
+}
+
+.admin-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+.admin-button.secondary {
+    background: rgba(107, 62, 38, 0.08);
+    color: #6B3E26;
+    border: 1px solid rgba(107, 62, 38, 0.12);
+}
+
+.admin-message {
+    margin-top: 12px;
+    font-size: 0.95rem;
+}
+
+.admin-message.success {
+    color: #2F9D27;
+}
+
+.admin-message.error {
+    color: #D63031;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-bottom: 22px;
+    align-items: end;
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(107, 62, 38, 0.12);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 360px;
+}
+
+.admin-table thead {
+    background: rgba(245, 183, 0, 0.15);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(107, 62, 38, 0.1);
+    font-size: 0.95rem;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(245, 183, 0, 0.08);
+}
+
+.admin-table th {
+    font-weight: 700;
+    color: #6B3E26;
+}
+
+.empty-row {
+    text-align: center;
+    color: #8c7a70;
+}
+
+.stats-summary {
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #6B3E26;
+}
+
+@media (max-width: 640px) {
+    .admin-body {
+        padding: 24px 16px;
+    }
+
+    .admin-card {
+        padding: 24px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-form {
+        grid-template-columns: 1fr;
+    }
+}

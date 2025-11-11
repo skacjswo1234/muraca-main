@@ -115,5 +115,15 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    recordVisit();
 });
+
+function recordVisit() {
+    fetch('/api/visit', {
+        method: 'POST',
+    }).catch((error) => {
+        console.error('Failed to record visit', error);
+    });
+}
 
