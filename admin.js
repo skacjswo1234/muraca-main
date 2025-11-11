@@ -11,11 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const statsTableBody = document.getElementById('statsTableBody');
   const statsSummary = document.getElementById('statsSummary');
   const logoutButton = document.getElementById('logoutButton');
-  const passwordForm = document.getElementById('passwordForm');
-  const currentPasswordInput = document.getElementById('currentPassword');
-  const newPasswordInput = document.getElementById('newPassword');
-  const confirmPasswordInput = document.getElementById('confirmPassword');
-  const passwordMessage = document.getElementById('passwordMessage');
 
   let adminPassword = null;
 
@@ -50,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         adminPassword = password;
         showLoginMessage('로그인 성공!', true);
         showDashboard();
-        clearPasswordForm();
         await loadStats();
       } else {
         showLoginMessage('로그인에 실패했습니다. 비밀번호를 확인하세요.', false);
@@ -73,74 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.reset();
     hideDashboard();
     showLoginMessage('로그아웃되었습니다.', true);
-    clearPasswordForm();
     toggleLoginForm(true);
   });
-
-  if (passwordForm) {
-    passwordForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      if (!adminPassword) {
-        showPasswordMessage('먼저 로그인해주세요.', false);
-        return;
-      }
-
-      const currentPassword = currentPasswordInput.value.trim();
-      const newPassword = newPasswordInput.value.trim();
-      const confirmPassword = confirmPasswordInput.value.trim();
-
-      if (!currentPassword || !newPassword || !confirmPassword) {
-        showPasswordMessage('모든 비밀번호 항목을 입력해주세요.', false);
-        return;
-      }
-
-      if (newPassword !== confirmPassword) {
-        showPasswordMessage('새 비밀번호 확인이 일치하지 않습니다.', false);
-        return;
-      }
-
-      if (newPassword.length < 4) {
-        showPasswordMessage('새 비밀번호는 4자 이상이어야 합니다.', false);
-        return;
-      }
-
-      togglePasswordForm(false);
-      showPasswordMessage('비밀번호를 변경하는 중...', true);
-
-      try {
-        const response = await fetch('/admin/password', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            current_password: currentPassword,
-            new_password: newPassword,
-          }),
-        });
-
-        if (response.status === 401) {
-          showPasswordMessage('현재 비밀번호가 올바르지 않습니다.', false);
-          togglePasswordForm(true);
-          return;
-        }
-
-        if (!response.ok) {
-          throw new Error('Failed to update password');
-        }
-
-        adminPassword = newPassword;
-        showPasswordMessage('비밀번호가 변경되었습니다.', true);
-        passwordForm.reset();
-      } catch (error) {
-        console.error('password change error', error);
-        showPasswordMessage('비밀번호 변경 중 오류가 발생했습니다.', false);
-      } finally {
-        togglePasswordForm(true);
-      }
-    });
-  }
 
   function showDashboard() {
     loginSection.classList.add('hidden');
@@ -161,19 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loginMessage.textContent = message;
     loginMessage.classList.toggle('success', isSuccess);
     loginMessage.classList.toggle('error', !isSuccess);
-  }
-
-  function showPasswordMessage(message, isSuccess) {
-    if (!passwordMessage) return;
-    passwordMessage.textContent = message;
-    passwordMessage.classList.toggle('success', isSuccess);
-    passwordMessage.classList.toggle('error', !isSuccess);
-  }
-
-  function clearPasswordForm() {
-    if (!passwordForm) return;
-    passwordForm.reset();
-    showPasswordMessage('', true);
   }
 
   async function loadStats() {
@@ -255,23 +170,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const average = total / records.length;
     statsSummary.textContent = `총 ${records.length}일 / 방문자 ${total}명, 하루 평균 ${average.toFixed(1)}명`;
-  }
-
-  function togglePasswordForm(enabled) {
-    if (!passwordForm) return;
-    [
-      currentPasswordInput,
-      newPasswordInput,
-      confirmPasswordInput,
-    ].forEach((input) => {
-      if (input) {
-        input.disabled = !enabled;
-      }
-    });
-
-    const submitButton = passwordForm.querySelector('button[type=\"submit\"]');
-    if (submitButton) {
-      submitButton.disabled = !enabled;
-    }
   }
 });

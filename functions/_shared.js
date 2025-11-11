@@ -11,11 +11,3 @@ export async function updateLastLogin(env) {
     `UPDATE admin SET last_login = datetime('now') WHERE id = 1`
   ).run();
 }
-
-export async function updateAdminPassword(env, newPassword) {
-  await env.DB.prepare(
-    `UPDATE admin SET password = ?1 WHERE id = 1`
-  )
-    .bind(newPassword)
-    .run();
-}
