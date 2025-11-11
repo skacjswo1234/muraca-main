@@ -1,6 +1,6 @@
 name = "muraca-main"
-main = "worker/index.js"
 compatibility_date = "2025-01-01"
+pages_build_output_dir = "."
 
 [[d1_databases]]
 binding = "DB"

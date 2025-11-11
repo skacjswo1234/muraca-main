@@ -1607,6 +1607,35 @@ body {
     color: #6B3E26;
 }
 
+.admin-divider {
+    margin: 28px 0;
+    border: none;
+    border-top: 1px solid rgba(107, 62, 38, 0.12);
+}
+
+.admin-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.admin-subtitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #6B3E26;
+}
+
+.password-form {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.password-form .admin-button {
+    grid-column: 1 / -1;
+    justify-self: flex-start;
+}
+
 @media (max-width: 640px) {
     .admin-body {
         padding: 24px 16px;
