@@ -1625,3 +1625,37 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.site-footer {
+    background-color: #6B3E26;
+    color: #FFF8E7;
+    padding: 36px 20px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.footer-item a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 248, 231, 0.6);
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 28px 16px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
+}
